@@ -27,15 +27,14 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "whoami"
-                        sh "cat /home/jan/projects/dev/tomcat-demo.pem"
-                        sh "scp -i /home/jan/projects/dev/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        sh "cat /home/jan/projects/dev/tomcat-jenkins.pem"
+                        sh "scp -i /home/jan/projects/dev/tomcat-jenkins.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "scp -i /home/jan/projects/dev/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        sh "scp -i /home/jan/projects/dev/tomcat-jenkins.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
